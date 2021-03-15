@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler">
+        <activity android:name=".SearchListActivity2"></activity>
+        <activity android:name=".MyScheduleActivity2" />
+        <activity android:name=".CheckReservationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDAFVdnZUaDPuIm2c4YDbN5Mn_fniU_gt8" />
 
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".MapActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
