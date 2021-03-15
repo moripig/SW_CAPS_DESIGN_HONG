@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.922" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/create_notice_nutton"
         android:layout_width="65dp"
         android:layout_height="41dp"
         android:text="작성"
@@ -90,7 +90,7 @@
         android:layout_height="41dp"
         android:text="취소"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintEnd_toStartOf="@+id/create_notice_nutton"
         app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent" />
 
