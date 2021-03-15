@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName10"
+        android:layout_width="388dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="168dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="385dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:background="#32ECBCBC"
+        android:text="댓글"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+
+    <TextView
+        android:id="@+id/textView27"
+        tools:layout_editor_absoluteX="278dp"
+        tools:layout_editor_absoluteY="151dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="작성일 yyyy-mm-dd" />
+
+    <TextView
+        android:id="@+id/textView28"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="132dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="여행장소" />
+
+    <TextView
+        android:id="@+id/textView29"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="85dp"
+        android:layout_width="344dp"
+        android:layout_height="47dp"
+        android:text="제목"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView30"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="132dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기간 : yyyy-mm-dd ~ yyyy-mm-dd" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="443dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <TextView
+        android:id="@+id/textView31"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="443dp"
+        android:layout_width="59dp"
+        android:layout_height="47dp"
+        android:text="추천하기( 추천 수 )" />
+
+    <TextView
+        android:id="@+id/textView32"
+        tools:layout_editor_absoluteY="598dp"
+        android:layout_width="383dp"
+        android:layout_height="27dp"
+        android:text="댓글 1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView33"
+        tools:layout_editor_absoluteY="637dp"
+        android:layout_width="383dp"
+        android:layout_height="27dp"
+        android:text="댓글 2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button12"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="672dp"
+        android:layout_width="59dp"
+        android:layout_height="34dp"
+        android:text="이전글"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/button13"
+        tools:layout_editor_absoluteX="220dp"
+        tools:layout_editor_absoluteY="672dp"
+        android:layout_width="59dp"
+        android:layout_height="34dp"
+        android:text="다음글"
+        android:textSize="12sp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
