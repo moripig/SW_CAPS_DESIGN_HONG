@@ -67,7 +67,7 @@
         android:layout_width="379dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="104dp"
-        android:text="게시글"
+        android:text="게시글목록"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.732" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/setting_button"
         android:layout_width="203dp"
         android:layout_height="40dp"
         android:text="기간, 여행지 선택"
