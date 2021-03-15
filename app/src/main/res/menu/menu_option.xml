@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home"
+
+        android:title="홈"
+
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_community"
+
+        android:title="게시판"
+
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_schedule"
+
+        android:title="내 일정"
+
+        app:showAsAction="never"
+        >
+    </item>
+
+    <item
+        android:id="@+id/menu_logout"
+
+        android:title="로그아웃"
+
+        app:showAsAction="never"
+        >
+    </item>
+
+</menu>
