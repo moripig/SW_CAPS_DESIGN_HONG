@@ -13,8 +13,8 @@ import net.skhu.traveler.R;
 
 public class NoticeBoardActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button search_button;
-    Button create_button;
+    Button search_button;   //검색 버튼
+    Button create_button;   //새로운 글 작성 버튼
 
 
     @Override
