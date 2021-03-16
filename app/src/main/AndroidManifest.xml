@@ -14,7 +14,9 @@
         <activity android:name=".SearchListActivity2"></activity>
         <activity android:name=".MyScheduleActivity2" />
         <activity android:name=".CheckReservationActivity" />
-
+        <activity android:name="net.skhu.notice.NoticeActivity"></activity>
+        <activity android:name="net.skhu.notice.NoticeBoardActivity"></activity>
+        <activity android:name="net.skhu.notice.TemporaryNoticeActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

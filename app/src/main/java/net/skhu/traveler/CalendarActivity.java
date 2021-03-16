@@ -23,7 +23,7 @@ public class CalendarActivity extends AppCompatActivity {
     private TextView textView_DateEnd;
     private DatePickerDialog.OnDateSetListener callbackMethod;
 
-    private String[] items = {"1", "2", "3", "4", "5"};
+    private String[] items = {"1명", "2명", "3명", "4명", "5명"};
 
 
     private TextView textView_Date;

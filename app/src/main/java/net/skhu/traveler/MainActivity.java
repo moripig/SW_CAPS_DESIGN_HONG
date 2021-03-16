@@ -2,11 +2,16 @@ package net.skhu.traveler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.view.Menu;
+
+import net.skhu.notice.NoticeActivity;
+import net.skhu.notice.NoticeBoardActivity;
+import net.skhu.notice.TemporaryNoticeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        intent_btn1 = findViewById(R.id.intent_btn1);
-        intent_btn2 = findViewById(R.id.intent_btn2);
+        intent_btn1 = findViewById(R.id.Calendar);
+        intent_btn2 = findViewById(R.id.Map);
         intent_btn3 = findViewById(R.id.checkReservation);
         intent_btn4 = findViewById(R.id.SearchList);
         intent_btn5 = findViewById(R.id.mySchedule);
-        intent_btn6 = findViewById(R.id.intent_btn6);
-        intent_btn7 = findViewById(R.id.intent_btn7);
+        intent_btn6 = findViewById(R.id.intent_Login);
+        intent_btn7 = findViewById(R.id.Notice);
 
 
         intent_btn1.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent7 = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent7 = new Intent(MainActivity.this, NoticeActivity.class);
 
                 startActivity(intent7);
             }

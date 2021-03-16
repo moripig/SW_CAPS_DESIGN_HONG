@@ -11,15 +11,15 @@ import net.skhu.traveler.R;
 
 public class NoticeActivity extends AppCompatActivity {
 
-    Button list_butten; //게시판으로 돌아가는 버튼
+    Button list_button; //게시판으로 돌아가는 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
-        list_butten = findViewById(R.id.list_button);
-        list_butten.setOnClickListener(new View.OnClickListener() {
+        list_button = findViewById(R.id.list_button);
+        list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
