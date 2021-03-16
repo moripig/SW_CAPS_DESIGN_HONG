@@ -19,13 +19,13 @@
         android:id="@+id/intent_btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calendar" />
+        android:text="달력 화면" />
 
     <Button
         android:id="@+id/intent_btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Map"
+        android:text="지도 화면"
         app:layout_constraintTop_toBottomOf="@+id/intent_btn1"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/intent_btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="join"
+        android:text="로그인 화면"
         app:layout_constraintTop_toBottomOf="@+id/intent_btn2"
         tools:layout_editor_absoluteX="0dp" />
 
