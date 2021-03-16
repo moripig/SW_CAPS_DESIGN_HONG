@@ -8,26 +8,38 @@ import android.view.View;
 import android.widget.Button;
 import android.view.Menu;
 
+
 public class MainActivity extends AppCompatActivity {
 
     Button intent_btn1;
     Button intent_btn2;
     Button intent_btn3;
     Button intent_btn4;
+    Button intent_btn5;
+    Button intent_btn6;
+    Button intent_btn7;
+
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
         return true; }
 
+    Button intent_btn8;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         intent_btn1 = findViewById(R.id.intent_btn1);
         intent_btn2 = findViewById(R.id.intent_btn2);
-        intent_btn3 = findViewById(R.id.intent_btn3);
-        intent_btn4 = findViewById(R.id.intent_btn4);
+        intent_btn3 = findViewById(R.id.checkReservation);
+        intent_btn4 = findViewById(R.id.SearchList);
+        intent_btn5 = findViewById(R.id.mySchedule);
+        intent_btn6 = findViewById(R.id.intent_btn6);
+        intent_btn7 = findViewById(R.id.intent_btn7);
+
 
         intent_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +65,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent3 = new Intent(MainActivity.this, LoginActivity.class);
+
+                Intent intent3 = new Intent(MainActivity.this, CheckReservationActivity.class);
 
                 startActivity(intent3);
+            }
+        });
+
+        intent_btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(MainActivity.this, SearchListActivity2.class);
+
+                startActivity(intent4);
+            }
+        });
+
+        intent_btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent5 = new Intent(MainActivity.this, MyScheduleActivity2.class);
+
+                startActivity(intent5);
+            }
+        });
+
+        intent_btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent6 = new Intent(MainActivity.this, LoginActivity.class);
+
+                startActivity(intent6);
+            }
+        });
+
+        intent_btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent7 = new Intent(MainActivity.this, MainActivity.class);
+
+                startActivity(intent7);
             }
         });
 

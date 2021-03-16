@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalendarActivity extends AppCompatActivity {
+
 
     private TextView textViewLocation;
     private TextView textView_DateStart;
@@ -23,10 +25,16 @@ public class CalendarActivity extends AppCompatActivity {
 
     private String[] items = {"1", "2", "3", "4", "5"};
 
+
+    private TextView textView_Date;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
 
         Spinner spinner = findViewById(R.id.spinner);
         textViewLocation = findViewById(R.id.textViewLocation);
@@ -47,14 +55,18 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
+
         this.InitializeView();
         this.InitializeListener();
     }
 
     public void InitializeView()
     {
+
         textView_DateStart = (TextView)findViewById(R.id.textView_dateStart);
         textView_DateEnd = (TextView)findViewById(R.id.textView_dateEnd);
+        textView_Date = (TextView)findViewById(R.id.textView_date);
+
     }
 
     public void InitializeListener()
@@ -67,6 +79,7 @@ public class CalendarActivity extends AppCompatActivity {
                 monthOfYear += 1;
                 textView_DateStart.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
                 textView_DateEnd.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+                textView_Date.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
             }
         };
     }
