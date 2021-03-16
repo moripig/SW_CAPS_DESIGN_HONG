@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import net.skhu.notice.NoticeBoardActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     Button intent_btn1;
@@ -17,15 +19,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         intent_btn1 = findViewById(R.id.intent_btn1);
         intent_btn2 = findViewById(R.id.intent_btn2);
+
 
         intent_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = new Intent(MainActivity.this, CalendarActivity.class);
-
+//                Intent intent1 = new Intent(MainActivity.this, CalendarActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, NoticeBoardActivity.class); //test 임시확인용
                 startActivity(intent1);
             }
         });
@@ -39,5 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
     }
 }
