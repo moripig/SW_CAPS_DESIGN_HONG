@@ -8,10 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 
-public class CreateNoticeActivity extends AppCompatActivity implements View.OnClickListener{
+public class TemporaryNoticeActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button cancel_button;  //취소하고 게시판으로 돌아가는 버튼
 
@@ -19,7 +18,7 @@ public class CreateNoticeActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_notice);
+        setContentView(R.layout.activity_notice_temporary);
 
         findViewById(R.id.create_notice_nutton).setOnClickListener(this); //test
 
@@ -29,8 +28,7 @@ public class CreateNoticeActivity extends AppCompatActivity implements View.OnCl
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(CreateNoticeActivity.this, NoticeActivity.class));
+                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
             }
         });
     }
