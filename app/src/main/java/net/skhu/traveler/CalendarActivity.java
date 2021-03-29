@@ -79,22 +79,33 @@ public class CalendarActivity extends AppCompatActivity {
             {
                 monthOfYear += 1;
                 textView_dateStart.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+                //textView_Date.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+            }
+        };
+        callbackMethodEnd = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                monthOfYear += 1;
                 textView_dateEnd.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
                 //textView_Date.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
             }
         };
     }
 
-    public void OnClickHandlerStart(View view)
+    public void OnClickHandler(View view)
     {
-        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodStart, 2021, 2, 14);
+        if(view.getId() == R.id.buttonStart) {
+            DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodStart, 2021, 2, 14);
 
-        dialog.show();
-    }
-    public void OnClickHandlerEnd(View view)
-    {
-        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodStart, 2021, 2, 14);
 
-        dialog.show();
+            dialog.show();
+        } else if(view.getId() == R.id.buttonEnd) {
+            DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodEnd, 2021, 2, 14);
+
+
+            dialog.show();
+        }
     }
 }
