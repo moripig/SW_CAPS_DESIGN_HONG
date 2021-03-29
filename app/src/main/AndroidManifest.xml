@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler">
-        <activity android:name=".MyProfileActivity"></activity>
+        <activity android:name=".MapActivity2"></activity>
+        <activity android:name=".MyProfileActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".SearchListActivity2" />
@@ -22,6 +23,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDAFVdnZUaDPuIm2c4YDbN5Mn_fniU_gt8" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="rfpi6isixt" />
 
         <activity android:name=".MapActivity" />
         <activity android:name=".CalendarActivity" />

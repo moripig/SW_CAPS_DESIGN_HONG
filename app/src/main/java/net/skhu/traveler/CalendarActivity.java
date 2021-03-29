@@ -19,14 +19,15 @@ public class CalendarActivity extends AppCompatActivity {
 
 
     private TextView textViewLocation;
-    private TextView textView_DateStart;
-    private TextView textView_DateEnd;
-    private DatePickerDialog.OnDateSetListener callbackMethod;
+    private TextView textView_dateStart;
+    private TextView textView_dateEnd;
+    private DatePickerDialog.OnDateSetListener callbackMethodStart;
+    private DatePickerDialog.OnDateSetListener callbackMethodEnd;
 
     private String[] items = {"1명", "2명", "3명", "4명", "5명"};
 
 
-    private TextView textView_Date;
+   // private TextView textView_Date;
 
 
 
@@ -63,30 +64,36 @@ public class CalendarActivity extends AppCompatActivity {
     public void InitializeView()
     {
 
-        textView_DateStart = (TextView)findViewById(R.id.textView_dateStart);
-        textView_DateEnd = (TextView)findViewById(R.id.textView_dateEnd);
-        textView_Date = (TextView)findViewById(R.id.textView_date);
+        textView_dateStart = (TextView)findViewById(R.id.textView_dateStart);
+        textView_dateEnd = (TextView)findViewById(R.id.textView_dateEnd);
+        //textView_Date = (TextView)findViewById(R.id.textView_date);
 
     }
 
     public void InitializeListener()
     {
-        callbackMethod = new DatePickerDialog.OnDateSetListener()
+        callbackMethodStart = new DatePickerDialog.OnDateSetListener()
         {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
             {
                 monthOfYear += 1;
-                textView_DateStart.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
-                textView_DateEnd.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
-                textView_Date.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+                textView_dateStart.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+                textView_dateEnd.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
+                //textView_Date.setText(year + "년 " + monthOfYear + "월 " + dayOfMonth + "일");
             }
         };
     }
 
-    public void OnClickHandler(View view)
+    public void OnClickHandlerStart(View view)
     {
-        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethod, 2021, 2, 14);
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodStart, 2021, 2, 14);
+
+        dialog.show();
+    }
+    public void OnClickHandlerEnd(View view)
+    {
+        DatePickerDialog dialog = new DatePickerDialog(this, callbackMethodStart, 2021, 2, 14);
 
         dialog.show();
     }
