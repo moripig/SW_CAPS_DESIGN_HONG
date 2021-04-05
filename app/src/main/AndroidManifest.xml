@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.skhu.traveler">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
+        android:name=".CustomApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler">
@@ -21,7 +27,15 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDAFVdnZUaDPuIm2c4YDbN5Mn_fniU_gt8" />
+            android:value="AIzaSyDAFVdnZUaDPuIm2c4YDbN5Mn_fniU_gt8"
+            />
+
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="dc91a54d89ea35e7616c731e65344dea"
+            />
+
 
         <activity android:name=".MapActivity" />
         <activity android:name=".CalendarActivity" />
