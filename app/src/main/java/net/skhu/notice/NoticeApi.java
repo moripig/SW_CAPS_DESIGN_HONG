@@ -5,6 +5,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -27,6 +29,21 @@ public interface NoticeApi {
 
     @POST("post/posttest")
     Call<Notice> setPost(@Body Notice notice);
+
+    @FormUrlEncoded
+    @POST("post/posttest")
+    Call<Notice> setPostJson(
+            @Field("id") int id,
+            @Field("title") String title,
+            @Field("body") String body,
+            @Field("start") int start,
+            @Field("end") int end,
+            @Field("loca") String loca,
+            @Field("member") int member,
+            @Field("date") int date,
+            @Field("hit") int hit,
+            @Field("cate") String cate
+    );
 
     @GET("post/test")
     Call<List<Notice>> getDatas(@Query("id") int id) ;

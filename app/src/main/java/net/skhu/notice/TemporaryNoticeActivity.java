@@ -48,10 +48,6 @@ public class TemporaryNoticeActivity extends AppCompatActivity implements View.O
         this.InitializeListener();  //test
 
         //제목 + 내용 입력
-        editText_title.getText().toString();
-        editText_body.getText().toString();
-
-
 
         create_notice_button = findViewById(R.id.create_notice_button);
         create_notice_button.setOnClickListener(new View.OnClickListener() {
@@ -67,36 +63,41 @@ public class TemporaryNoticeActivity extends AppCompatActivity implements View.O
 
                 NoticeApi noticeApi = retrofit.create(NoticeApi.class);
 
+                String title = editText_title.getText().toString();
+                String body = editText_body.getText().toString();
+
+                int start = 0;
+                int end = 0;
+                String loca="미정";
+                int member = 0;
+                int date = 0;
+                int hit = 0;
+                String cate= "미정";
+
                 Notice notice = new Notice(
-                        1000,
-                        "안드에서 만들기 제목",
-                        "내용입니다.",
-                        20210510,
-                        20210515,
-                        "장소는 서울",
-                        4,
-                        20210520,
-                        4,
-                        "카테고리"
+                        0,
+                        title,
+                        body,
+                        start,
+                        end,
+                        loca,
+                        member,
+                        date,
+                        hit,
+                        cate
                 );
 
                 Call<Notice> call = noticeApi.setPost(notice);
-
+//                Call<Notice> call = noticeApi.setPostJson(10, "안녕", "하세요", 2021, 2022,"장소", 7,14,10,"관리");
 
 
                 call.enqueue(new Callback<Notice>() {
                     @Override
                     public void onResponse(Call<Notice> call, Response<Notice> response) {
-                        if(!response.isSuccessful()){
-                            Log.d("Test", "실패");
+                        if(response.isSuccessful()){
+                            Log.d("Test", call.toString());
+                            Log.d("Test", "확인");
                         }
-                        Notice noticeResponse = response.body();
-                        String content = "";
-                        content += "Code : " + response.code() + "\n";
-                        content += "Id : " + noticeResponse.getId() + "\n";
-                        content += "Title : " + noticeResponse.getTitle() + "\n";
-
-
                     }
 
                     @Override

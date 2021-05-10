@@ -89,7 +89,7 @@ public class NoticeActivity extends AppCompatActivity {
         NoticeApi noticeApi = retrofit.create(NoticeApi.class);
 
         //유저가 리스트에서 게시글 클릭 시 id가 채워지도록 구현 예정
-        Call<Notice> call = noticeApi.getPost(100);
+        Call<Notice> call = noticeApi.getPost(101);
 
         call.enqueue(new Callback<Notice>() {
             @Override
