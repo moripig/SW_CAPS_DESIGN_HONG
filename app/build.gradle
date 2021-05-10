@@ -26,6 +26,22 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    splits {
+
+        abi {
+
+            enable true
+
+            reset()
+
+            include 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
+
+            universalApk false
+
+        }
+
+    }
 }
 
 dependencies {
@@ -41,4 +57,6 @@ dependencies {
     implementation "com.github.prolificinteractive:material-calendarview:1.4.3"
 
     implementation 'com.naver.maps:map-sdk:3.11.0'
+
+    implementation files('libs/libDaumMapAndroid.jar')
 }

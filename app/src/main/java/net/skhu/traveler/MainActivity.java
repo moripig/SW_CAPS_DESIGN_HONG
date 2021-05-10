@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button intent_btn7;
     Button intent_btn8;
     Button intent_btn9;
+    Button intent_btn10;
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         intent_btn7 = findViewById(R.id.Notice);
         intent_btn8 = findViewById(R.id.myProfile);
         intent_btn9 = findViewById(R.id.Map2);
+        intent_btn10 = findViewById(R.id.Map3);
 
 
 
@@ -136,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent9 = new Intent(MainActivity.this, MapActivity2.class);
 
                 startActivity(intent9);
+            }
+        });
+
+        intent_btn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent10 = new Intent(MainActivity.this, MapActivity3.class);
+
+                startActivity(intent10);
             }
         });
 
