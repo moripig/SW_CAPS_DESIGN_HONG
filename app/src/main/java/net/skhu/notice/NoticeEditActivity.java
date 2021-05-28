@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import net.skhu.traveler.R;
 
@@ -21,13 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class TemporaryNoticeActivity extends AppCompatActivity {
-
+public class NoticeEditActivity extends AppCompatActivity {
     RetrofitService retrofitService = new RetrofitService();
 
     Button cancel_button;  //취소하고 게시판으로 돌아가는 버튼
-    Button create_notice_button; //생성버튼
+    Button edit_notice_button; //생성버튼
 
     Button start_button;    //시작일 작성버튼
     Button end_button;      //종료일 작성버튼
@@ -47,43 +44,46 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice_temporary);
+        setContentView(R.layout.activity_notice_edit);
 
+        //매칭
         editText_title = (EditText)findViewById(R.id.editText_title);
         editText_body = (EditText)findViewById(R.id.editText_body);
         editText_member = (EditText)findViewById(R.id.editText_member);
         editText_loca = (EditText)findViewById(R.id.editText_loca);
+        edit_notice_button = findViewById(R.id.edit_notice_button);
+
+
+        //수정할 게시글의 id와 작성일 가져옴
+        int id = getIntent().getExtras().getInt("editId");
+        int date = getIntent().getExtras().getInt("editDate");
 
         //달력
         this.InitializeView();
         this.InitializeListener();
 
-        //제목 + 내용 입력
-        create_notice_button = findViewById(R.id.edit_notice_button);
-        create_notice_button.setOnClickListener(new View.OnClickListener() {
-
+        //수정 버튼 클릭 시 데이터 전송
+        edit_notice_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+//                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 //                Date d = new Date();
 //                int today = Integer.parseInt(format.format(d));
 
                 NoticeApi noticeApi = retrofitService.getRetrofit();
 
-                //사용자가 입력한 정보들
+                //사용자가 입력한 정보 Notice 객체 만들기
                 String title = editText_title.getText().toString();
                 String body = editText_body.getText().toString();
                 int start = getStartday();
                 int end = getEndday();
                 String loca= editText_loca.getText().toString();
                 int member = Integer.parseInt(editText_member.getText().toString());
-                int date = Integer.parseInt(format.format(new Date()));
                 int hit = 0;
                 String cate= "미정";
-                System.out.println(date);
                 Notice notice = new Notice(
-                        0,
+                        id,
                         title,
                         body,
                         start,
@@ -95,7 +95,7 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
                         cate
                 );
 
-                Call<Notice> call = noticeApi.setPost(notice);
+                Call<Notice> call = noticeApi.editPost(notice);
 
                 call.enqueue(new Callback<Notice>() {
                     @Override
@@ -112,20 +112,21 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
                     }
                 });
 
-                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
+                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
             }
         });
 
-
+        //취소버튼 클릭 시
         cancel_button = findViewById(R.id.cancel_button);
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
+                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
             }
         });
-    }
+        
 
+    }
     //달력
     public void InitializeView()
     {
@@ -186,5 +187,4 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
     public int getEndday() {
         return endday;
     }
-
 }

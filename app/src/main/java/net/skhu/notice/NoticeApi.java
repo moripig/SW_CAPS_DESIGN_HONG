@@ -27,35 +27,40 @@ public interface NoticeApi {
     @GET("post/id/{id}")
     Call<Notice> getPost(@Path("id") int id);
 
-    @POST("post/posttest")
+    @GET("post/test")
+    Call<List<Notice>> gettest();
+
+    //생성
+    @POST("post/create")
     Call<Notice> setPost(@Body Notice notice);
 
-    @FormUrlEncoded
-    @POST("post/posttest")
-    Call<Notice> setPostJson(
-            @Field("id") int id,
-            @Field("title") String title,
-            @Field("body") String body,
-            @Field("start") int start,
-            @Field("end") int end,
-            @Field("loca") String loca,
-            @Field("member") int member,
-            @Field("date") int date,
-            @Field("hit") int hit,
-            @Field("cate") String cate
-    );
+    //수정
+    @POST("post/edit")
+    Call<Notice> editPost(@Body Notice notice);
 
-    @GET("post/test")
-    Call<List<Notice>> getDatas(@Query("id") int id) ;
+    @POST("post/delete")
+    Call<Notice> deletePost(@Body int id);
 
-
-
-
-    @GET("post/")
-    Call<List<Notice>> getTest();
-
-    //test용임 삭제해
-    @GET("/posts")
-    Call<List<Post>> getData(@Query("userId") String id);
+//    @FormUrlEncoded
+//    @POST("post/posttest")
+//    Call<Notice> setPostJson(
+//            @Field("id") int id,
+//            @Field("title") String title,
+//            @Field("body") String body,
+//            @Field("start") int start,
+//            @Field("end") int end,
+//            @Field("loca") String loca,
+//            @Field("member") int member,
+//            @Field("date") int date,
+//            @Field("hit") int hit,
+//            @Field("cate") String cate
+//    );
+//
+//    @GET("post/")
+//    Call<List<Notice>> getTest();
+//
+//    //test용임 삭제해
+//    @GET("/posts")
+//    Call<List<Post>> getData(@Query("userId") String id);
 
 }

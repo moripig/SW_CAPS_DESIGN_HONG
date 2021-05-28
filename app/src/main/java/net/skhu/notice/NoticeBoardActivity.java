@@ -2,6 +2,10 @@ package net.skhu.notice;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +17,7 @@ import android.widget.EditText;
 
 import net.skhu.traveler.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,10 +27,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NoticeBoardActivity extends AppCompatActivity implements View.OnClickListener {
+    RetrofitService retrofitService = new RetrofitService();    //객체 가져오기 위함
 
     Button search_button;   //검색 버튼
     Button create_button;   //새로운 글 작성 버튼
     EditText editText_search;
+
+    NoticeListAdapter noticeListAdapter; // 리사이클 뷰 어뎁터
+    ArrayList<Notice> arrayList; // 채워 넣을 곳
+
+    List<Notice> list = new ArrayList<>();
 
     //첫화면
     @Override
@@ -39,33 +50,30 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         search_button = findViewById(R.id.search_butten);
         editText_search = (EditText)findViewById(R.id.editText_search);
 
-        Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl("http://10.0.2.2:8088/")
-                .baseUrl("http://192.168.0.8:8088/")    //로컬에 연결
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        NoticeApi noticeApi = retrofit.create(NoticeApi.class);
+        //목록 불러오기
+        NoticeApi noticeApi = retrofitService.getRetrofit();
 
-        //처음에 전부 가져오기.
         Call<List<Notice>> call = noticeApi.getAll();
+
         call.enqueue(new Callback<List<Notice>>() {
             @Override
             public void onResponse(Call<List<Notice>> call, Response<List<Notice>> response) {
                 if(response.isSuccessful()){
-                    List<Notice> list = response.body();
-                    Log.d("Test", "최초 접속 시 서버에서 가져오는 것들입니다.");
-                    Log.d("Test", "ListView를 아직 구현하지 못해 콘솔에서 표시하였고");
-                    Log.d("Test", "ListView 구현 후 해당 내용들을 채워 넣은 리스트를 구현할 것입니다.");
-                    Log.d("Test","post1 : " + list.get(0).getTitle() + "내용 : " + list.get(0).getBody());
-                    Log.d("Test", "post2 : " +list.get(1).getTitle() + "내용 : " + list.get(1).getBody());
-                    Log.d("Test","post3 : " + list.get(2).getTitle() + "내용 : " + list.get(2).getBody());
-//                    Notice notice = response.body();
-//                    textView_title.setText(notice.getTitle());
-//                    textView_body.setText(notice.getBody());
-//                    textView_loca.setText("장소 : " + notice.getLoca());
-//                    textView_createDay.setText("작성일 : " + Integer.toString(notice.getDate()));
-//                    textView_day.setText("기간 : " + Integer.toString(notice.getStart()) + " ~ " + Integer.toString(notice.getEnd()));
+                    list = response.body();
+
+                    arrayList = new ArrayList<Notice>(); //리사이클 뷰
+                    for(int i=0; i < list.size(); i++) {
+                        arrayList.add((list.get(i)));
+                    }
+
+                    noticeListAdapter = new NoticeListAdapter(getApplicationContext(), arrayList);
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notice_list);
+                    recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    recyclerView.setItemAnimator((new DefaultItemAnimator()));
+                    recyclerView.setAdapter(noticeListAdapter);
+
                 }
                 else {
                     Log.d("Test", "실패");
@@ -78,10 +86,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-
-
-
-        //생성
+        //새로운글 작성하기 넘어가는것
         create_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,35 +98,43 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl("http://10.0.2.2:8088/")
-                        .baseUrl("http://192.168.0.8:8088/")    //로컬에 연결
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                NoticeApi noticeApi = retrofit.create(NoticeApi.class);
+                NoticeApi noticeApi = retrofitService.getRetrofit();
                 System.out.println(editText_search.getText().toString());
+//                Call<List<Notice>> call = noticeApi.gettest();
                 Call<List<Notice>> call = noticeApi.getTitle(editText_search.getText().toString());
 
                 call.enqueue(new Callback<List<Notice>>() {
                     @Override
                     public void onResponse(Call<List<Notice>> call, Response<List<Notice>> response) {
                         if(response.isSuccessful()){
-                            List<Notice> list = response.body();
-                            Log.d("Test",list.get(0).getTitle());
-                            Log.d("Test","성공");
+                            if(response.body().size() != 0) {
+                                list = response.body();
+
+                                arrayList = new ArrayList<Notice>(); //리사이클 뷰
+                                for(int i=0; i < list.size(); i++) {
+                                    arrayList.add((list.get(i)));
+                                }
+                                noticeListAdapter = new NoticeListAdapter(getApplicationContext(), arrayList);
+                                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notice_list);
+                                recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                recyclerView.setItemAnimator((new DefaultItemAnimator()));
+                                recyclerView.setAdapter(noticeListAdapter);
+                            }
+                            else {
+                                System.out.println("검색결과 없음");
+                            }
                         }
                         else {
-                            Log.d("Test", "실패1");
+                            Log.d("Test", "실패");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<List<Notice>> call, Throwable t) {
-                        System.out.println("오류남");
+
                     }
                 });
-
 //                startActivity(new Intent(NoticeBoardActivity.this, NoticeActivity.class));
             }
         });

@@ -10,17 +10,16 @@
         android:id="@+id/editText_search"
         android:layout_width="169dp"
         android:layout_height="35dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/intent_btn41"
         app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/create_button"
@@ -54,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#1DC19E9E"
-        android:text="목록"
+        android:text="게시판"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.558"
@@ -62,33 +61,17 @@
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 
-
-
-
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="379dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        android:text="게시글목록"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="118dp"
         android:layout_height="24dp"
         android:text="1 2 3 4 5 ..."
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editText_search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintTop_toBottomOf="@+id/notice_list"
+        app:layout_constraintVertical_bias="0.293" />
 
     <Button
         android:id="@+id/setting_button"
@@ -103,10 +86,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.111" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="380dp"
-        android:layout_height="449dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="141dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notice_list"
+        android:layout_width="326dp"
+        android:layout_height="418dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

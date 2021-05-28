@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.skhu.notice.TemporaryNoticeActivity">
+    tools:context="net.skhu.notice.NoticeEditActivity">
 
     <EditText
         android:id="@+id/editText_member"
@@ -72,7 +72,7 @@
         android:id="@+id/edit_notice_button"
         android:layout_width="65dp"
         android:layout_height="41dp"
-        android:text="작성"
+        android:text="수정"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
