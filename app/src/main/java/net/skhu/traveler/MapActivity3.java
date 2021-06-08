@@ -6,27 +6,40 @@ import android.app.DatePickerDialog;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import org.json.JSONArray;
+
 public class MapActivity3 extends AppCompatActivity {
 
     private TextView textView_Date;
     private DatePickerDialog.OnDateSetListener callbackMethod;
+/*
+    Background task;
+    JSONArray jsonArray;
 
+    ArrayList<String> arrayList;
+    ArrayAdapter<String> arrayAdapter;
+2021-05-11*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +49,18 @@ public class MapActivity3 extends AppCompatActivity {
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
+/*
+        Spinner sp1 = (Spinner) findViewById(R.id.spinner1);
+        Spinner sp2 = (Spinner) findViewById(R.id.spinner2);
+        Spinner sp3 = (Spinner) findViewById(R.id.spinner3);
+
+        final String url = "http://www.kma.go.kr/DFSROOT/POINT/DATA/top.json.txt";
+        task = new Background();
+
+        try{
+            jsonArray = task.execute(url).get();
+        } 2021-05-11*/
+
 
         //getHashKey(); // 해쉬값 추출용
 
@@ -92,4 +117,20 @@ public class MapActivity3 extends AppCompatActivity {
 
         dialog.show();
     }
+
+    /*public class Background extends AsyncTask<String, Void, JSONArray> {
+        JSONArray b_jsonArray;
+
+        @Override
+        protected void onPreExcute() { super.onPreExecute();}
+
+        @Override
+        protected JSONArray doinBackground(String... strUrl) {
+
+            try{
+                URL url = new URL(strUrl[0]);
+
+            }
+        }
+    } 2021-05-11*/
 }

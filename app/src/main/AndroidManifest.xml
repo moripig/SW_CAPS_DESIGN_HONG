@@ -2,23 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.skhu.traveler">
 
-    <uses-permission android:name="android.permission.INTERNET">
-    </uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">
-    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler"
-
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config">
-
-        <activity android:name=".MapActivity3"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".KakaoAPI"></activity>
+        <activity android:name=".ResultSearchKeyword" />
+        <activity android:name=".KotlinTemp" />
+        <activity android:name=".MapActivity3" />
         <activity android:name=".MapActivity2" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".LoginActivity" />
@@ -47,8 +46,9 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="7b03d03770c084c2ec69249fdca9b457" />
-
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="7b03d03770c084c2ec69249fdca9b457" />
     </application>
 
 </manifest>
