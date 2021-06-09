@@ -3,7 +3,6 @@ package net.skhu.notice;
 import com.google.gson.annotations.SerializedName;
 
 public class Notice {
-
     @SerializedName("id")
     private int id;
 
