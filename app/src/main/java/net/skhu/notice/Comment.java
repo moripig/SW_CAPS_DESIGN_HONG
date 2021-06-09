@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Comment {
 
+
     @SerializedName("idx")
     private int idx;
 
