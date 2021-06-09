@@ -39,12 +39,13 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="109dp"
+        android:layout_height="105dp"
         android:layout_marginBottom="41dp"
         app:layout_constraintBottom_toTopOf="@+id/login_email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logintxt" />
 
 
     <Button

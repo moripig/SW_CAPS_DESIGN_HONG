@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,11 +21,16 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.util.exception.KakaoException;
 
+
 import net.skhu.notice.NoticeActivity;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ISessionCallback mSessionCallback;
+
+
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
@@ -122,26 +128,29 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String email = login_email.getText().toString();
+                String password = login_password.getText().toString();
+
                 if (isEmptyOrWhiteSpace(email))
                     login_email.setError("아이디를 입력해주세요.");
 
-                String password = login_password.getText().toString();
+
                 if (isEmptyOrWhiteSpace(password))
                     login_password.setError("비밀번호를 입력해주세요.");
 
                 Intent intent1 = new Intent(LoginActivity.this, MapActivity.class);
 
                 if(isEmptyOrWhiteSpace(email) ==false && isEmptyOrWhiteSpace(password) == false)
-                startActivity(intent1);
+                    startActivity(intent1);
+
+
             }
         });
 
         join_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(LoginActivity.this, "회원가입 페이지로 이동합니다", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(LoginActivity.this, JoinActivity.class);
 
                 startActivity(intent2);
