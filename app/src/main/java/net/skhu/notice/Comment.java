@@ -3,6 +3,7 @@ package net.skhu.notice;
 import com.google.gson.annotations.SerializedName;
 
 public class Comment {
+
     @SerializedName("idx")
     private int idx;
 
