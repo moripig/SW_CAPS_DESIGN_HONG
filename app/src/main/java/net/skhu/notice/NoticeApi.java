@@ -41,6 +41,13 @@ public interface NoticeApi {
     @POST("post/delete")
     Call<Notice> deletePost(@Body int id);
 
+    //comment Test
+    @GET("comment/all/{postidx}")
+    Call<List<Comment>> getComment(@Path("postidx") int postidx);
+
+    @POST("comment/create")
+    Call<Comment> setComment(@Body Comment comment);
+
 //    @FormUrlEncoded
 //    @POST("post/posttest")
 //    Call<Notice> setPostJson(

@@ -14,7 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+
+import com.lakue.pagingbutton.LakuePagingButton;
+import com.lakue.pagingbutton.OnPageSelectListener;
+
+import net.skhu.traveler.MainActivity;
 import net.skhu.traveler.R;
 
 import java.util.ArrayList;
@@ -32,6 +38,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
     Button search_button;   //검색 버튼
     Button create_button;   //새로운 글 작성 버튼
     EditText editText_search;
+
 
     NoticeListAdapter noticeListAdapter; // 리사이클 뷰 어뎁터
     ArrayList<Notice> arrayList; // 채워 넣을 곳
@@ -122,6 +129,8 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
                                 recyclerView.setAdapter(noticeListAdapter);
                             }
                             else {
+                                //검색결과 없는 것으로 화면 바꿔주기. 어떻게 해야함?
+                                //구현 못할거 같으면 그냥 if문 삭제해
                                 System.out.println("검색결과 없음");
                             }
                         }
@@ -138,7 +147,9 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
 //                startActivity(new Intent(NoticeBoardActivity.this, NoticeActivity.class));
             }
         });
+
     }
+
 
     public void onClick(View v) {
         switch (v.getId()) {

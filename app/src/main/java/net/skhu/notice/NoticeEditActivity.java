@@ -46,6 +46,10 @@ public class NoticeEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_edit);
 
+        //수정할 게시글의 id와 작성일 가져옴
+        int id = getIntent().getExtras().getInt("editId");
+        int date = getIntent().getExtras().getInt("editDate");
+
         //매칭
         editText_title = (EditText)findViewById(R.id.editText_title);
         editText_body = (EditText)findViewById(R.id.editText_body);
@@ -53,10 +57,10 @@ public class NoticeEditActivity extends AppCompatActivity {
         editText_loca = (EditText)findViewById(R.id.editText_loca);
         edit_notice_button = findViewById(R.id.edit_notice_button);
 
-
-        //수정할 게시글의 id와 작성일 가져옴
-        int id = getIntent().getExtras().getInt("editId");
-        int date = getIntent().getExtras().getInt("editDate");
+        editText_title.setText(getIntent().getExtras().getString("editTitle"));
+        editText_body.setText(getIntent().getExtras().getString("editBody"));
+        editText_loca.setText(getIntent().getExtras().getString("editLoca"));
+        editText_member.setText(Integer.toString(getIntent().getExtras().getInt("editMember")));
 
         //달력
         this.InitializeView();
@@ -132,6 +136,8 @@ public class NoticeEditActivity extends AppCompatActivity {
     {
         start_button = findViewById(R.id.start_button);
         end_button = findViewById(R.id.end_button);
+        start_button.setText(Integer.toString(getIntent().getExtras().getInt("editStart")));
+        end_button.setText(Integer.toString(getIntent().getExtras().getInt("editStart")));
     }
 
     public void InitializeListener()

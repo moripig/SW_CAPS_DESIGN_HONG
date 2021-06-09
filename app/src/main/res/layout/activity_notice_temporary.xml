@@ -23,6 +23,7 @@
         android:layout_width="390dp"
         android:layout_height="388dp"
         android:ems="10"
+        android:gravity="top"
         android:inputType="textPersonName"
         android:text="Note"
         app:layout_constraintEnd_toEndOf="parent"
