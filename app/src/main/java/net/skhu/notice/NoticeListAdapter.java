@@ -26,6 +26,7 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         TextView itemDate;
         TextView itemDay;
 
+
         //어느 택스트를 넣을 지?
         public ViewHolder(View view) {
             super(view);
