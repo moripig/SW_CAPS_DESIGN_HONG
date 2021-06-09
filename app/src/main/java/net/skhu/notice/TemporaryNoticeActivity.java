@@ -17,6 +17,7 @@ import net.skhu.traveler.R;
 
 public class TemporaryNoticeActivity extends AppCompatActivity implements View.OnClickListener{
 
+    //test
     Button cancel_button;  //취소하고 게시판으로 돌아가는 버튼
     private TextView textView_Date;         //test
     private DatePickerDialog.OnDateSetListener callbackMethod;  //test
