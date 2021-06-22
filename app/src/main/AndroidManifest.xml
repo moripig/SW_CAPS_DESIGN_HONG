@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler"
         android:usesCleartextTraffic="true">
-        <activity android:name=".KakaoAPI"></activity>
+        <activity android:name="net.skhu.schedule.ScheduleCreateActivity"></activity>
+        <activity android:name="net.skhu.schedule.ScheduleListActivity" />
+        <activity android:name=".KakaoAPI" />
         <activity android:name=".ResultSearchKeyword" />
         <activity android:name=".KotlinTemp" />
         <activity android:name=".MapActivity3" />
@@ -28,6 +30,7 @@
         <activity android:name="net.skhu.notice.NoticeActivity" />
         <activity android:name="net.skhu.notice.NoticeBoardActivity" />
         <activity android:name="net.skhu.notice.TemporaryNoticeActivity" />
+        <activity android:name="net.skhu.notice.NoticeEditActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
