@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent7 = new Intent(MainActivity.this, NoticeBoardActivity.class);
+                Intent intent7 = new Intent(MainActivity.this, NoticeActivity.class);
 
                 startActivity(intent7);
             }
