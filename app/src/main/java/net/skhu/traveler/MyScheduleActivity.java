@@ -10,7 +10,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MyScheduleActivity2 extends AppCompatActivity {
+public class MyScheduleActivity extends AppCompatActivity {
 
     MyScheduleAdapter myScheduleAdapter;
     ArrayList<Text> arrayList;

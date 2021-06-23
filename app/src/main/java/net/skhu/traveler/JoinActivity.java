@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.view.Menu;
 
 public class JoinActivity extends AppCompatActivity {
 

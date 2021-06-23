@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.view.Menu;
 
 import net.skhu.notice.NoticeActivity;
-import net.skhu.notice.NoticeBoardActivity;
-import net.skhu.notice.TemporaryNoticeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button intent_btn8;
     Button intent_btn9;
     Button intent_btn10;
+    Button intent_btn11;
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_option, menu);
@@ -48,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         intent_btn8 = findViewById(R.id.myProfile);
         intent_btn9 = findViewById(R.id.Map2);
         intent_btn10 = findViewById(R.id.Map3);
+        intent_btn11 = findViewById(R.id.bumMain);
+
+
 
 
 
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent5 = new Intent(MainActivity.this, MyScheduleActivity2.class);
+                Intent intent5 = new Intent(MainActivity.this, MyScheduleActivity.class);
 
                 startActivity(intent5);
             }
@@ -148,6 +150,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent10 = new Intent(MainActivity.this, MapActivity3.class);
 
                 startActivity(intent10);
+            }
+        });
+        intent_btn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent11 = new Intent(MainActivity.this, net.skhu.bum.BumMainActivity.class);
+
+                startActivity(intent11);
             }
         });
 

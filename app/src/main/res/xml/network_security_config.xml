@@ -2,5 +2,9 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">maps.daum-img.net</domain>
+        <domain includeSubdomains="true">openapi.seoul.go.kr:8088/6f7741686e766c64313131697a586b67/xml/TbCorona19CountStatusJCG/1/1/</domain>
+        <domain includeSubdomains="true">openapi.seoul.go.kr:8088/6f7741686e766c64313131697a586b67/xml/SdeTlSccoSigW/1/25/</domain>
+
     </domain-config>
+    <base-config cleartextTrafficPermitted="true" />
 </network-security-config>
