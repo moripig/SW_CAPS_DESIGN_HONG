@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_shedule) {
             Toast.makeText(this, "내 일정 메뉴 클릭", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ScheduleListActivitye.class);
+            Intent intent = new Intent(this, ScheduleListActivity.class);
             intent.putExtra("loginId",idx);
             startActivity(intent);
             return true;

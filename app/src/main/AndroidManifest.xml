@@ -34,8 +34,10 @@
         <activity android:name="net.skhu.bum.BumMainActivity" />
         <activity android:name="net.skhu.bum.LoginActivity" />
         <activity android:name="net.skhu.bum.MyScheduleActivity" />
-        <activity android:name="net.skhu.bum.ScheduleListActivitye" />
+        <activity android:name="net.skhu.bum.ScheduleListActivity" />
         <activity android:name="net.skhu.bum.SearchActivity" />
+        <activity android:name="net.skhu.bum.Login2Activity" />
+        <activity android:name="net.skhu.bum.Join2Activity" />
 
 
         <meta-data
