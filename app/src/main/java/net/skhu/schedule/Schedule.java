@@ -2,13 +2,15 @@ package net.skhu.schedule;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable {
 
     @SerializedName("idx")
     private int idx;
 
-    @SerializedName("where")
-    private String where;
+    @SerializedName("place")
+    private String place;
 
     @SerializedName("start")
     private int start;
@@ -22,9 +24,9 @@ public class Schedule {
     @SerializedName("userid")
     private int userid;
 
-    public Schedule(int idx, String where, int start, int end, int total, int userid) {
+    public Schedule(int idx, String place, int start, int end, int total, int userid) {
         this.idx = idx;
-        this.where = where;
+        this.place = place;
         this.start = start;
         this.end = end;
         this.total = total;
@@ -39,12 +41,12 @@ public class Schedule {
         this.idx = idx;
     }
 
-    public String getWhere() {
-        return where;
+    public String getPlace() {
+        return place;
     }
 
-    public void setWhere(String where) {
-        this.where = where;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public int getStart() {
