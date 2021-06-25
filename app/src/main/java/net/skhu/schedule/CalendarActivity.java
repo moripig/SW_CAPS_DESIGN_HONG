@@ -125,7 +125,7 @@ public class CalendarActivity extends AppCompatActivity {
                                 (((schedulelist.get(i).getEnd()) /100) %100),((schedulelist.get(i).getEnd()) % 100)));
                         schedule_save_button.setVisibility(View.INVISIBLE);
                         schedule_textView.setVisibility(View.VISIBLE);
-                        schedule_textView.setText("장소 : " + schedulelist.get(i).getPlace() + "\n인원 : " + schedulelist.get(i).getTotal());
+                        schedule_textView.setText("장소 : " + schedulelist.get(i).getPlace() + "\n\n인원 : " + schedulelist.get(i).getTotal());
                         schedule_edit_button.setVisibility(View.VISIBLE);
                         schedule_delete_button.setVisibility(View.VISIBLE);
 

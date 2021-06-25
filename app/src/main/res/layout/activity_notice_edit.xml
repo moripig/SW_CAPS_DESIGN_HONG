@@ -10,11 +10,11 @@
         android:id="@+id/editText_member"
         android:layout_width="149dp"
         android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +25,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Note"
+        android:gravity="top"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +43,13 @@
         android:layout_marginRight="76dp"
         android:onClick="OnClickHandler"
         android:text="종료일"
+        android:backgroundTint="@color/orange"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_loca" />
+
 
     <Button
         android:id="@+id/start_button"
@@ -52,6 +60,10 @@
         android:layout_marginTop="24dp"
         android:onClick="OnClickHandler"
         android:text="시작일"
+        android:backgroundTint="@color/orange"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -63,6 +75,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Title"
+        android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +86,9 @@
         android:layout_width="65dp"
         android:layout_height="41dp"
         android:text="수정"
+        android:backgroundTint="@color/orange"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -81,6 +97,9 @@
         android:layout_width="65dp"
         android:layout_height="41dp"
         android:text="취소"
+        android:backgroundTint="@color/orange"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edit_notice_button"
         app:layout_constraintHorizontal_bias="0.978"
@@ -90,6 +109,8 @@
         android:id="@+id/editText_loca"
         android:layout_width="292dp"
         android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -104,6 +125,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:text="여행지"
+        android:padding="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -115,6 +137,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="40dp"
         android:text="인원 : "
+        android:padding="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
