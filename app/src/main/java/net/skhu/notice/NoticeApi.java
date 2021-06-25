@@ -15,20 +15,21 @@ import retrofit2.http.Query;
 
 public interface NoticeApi {
 
-    //전체 bord불러오기
-    @GET("post/")
-    Call<List<Notice>> getAll();
+    //전체 bord불러오기 사용x
+//    @GET("post/")
+//    Call<List<Notice>> getAll();
+
+    //페이지 처리한 리스트
+    @GET("post/{page}")
+    Call<List<Notice>> getPage(@Path("page") int page);
 
     //검색 기능
-    @GET("post/title/{title}")
-    Call<List<Notice>> getTitle(@Path("title") String title);
+    @GET("post/title/{title}/{page}")
+    Call<List<Notice>> getTitle(@Path("title") String title, @Path("page") int page);
 
-    //객체 리스트에서 한 개 클릭 시
+    //리스트에서 게시글 클릭 시
     @GET("post/id/{id}")
     Call<Notice> getPost(@Path("id") int id);
-
-    @GET("post/test")
-    Call<List<Notice>> gettest();
 
     //생성
     @POST("post/create")
@@ -38,36 +39,16 @@ public interface NoticeApi {
     @POST("post/edit")
     Call<Notice> editPost(@Body Notice notice);
 
+    //삭제
     @POST("post/delete")
     Call<Notice> deletePost(@Body int id);
 
-    //comment Test
+    //댓글 목록
     @GET("comment/all/{postidx}")
     Call<List<Comment>> getComment(@Path("postidx") int postidx);
 
+    //댓글 생성
     @POST("comment/create")
     Call<Comment> setComment(@Body Comment comment);
-
-//    @FormUrlEncoded
-//    @POST("post/posttest")
-//    Call<Notice> setPostJson(
-//            @Field("id") int id,
-//            @Field("title") String title,
-//            @Field("body") String body,
-//            @Field("start") int start,
-//            @Field("end") int end,
-//            @Field("loca") String loca,
-//            @Field("member") int member,
-//            @Field("date") int date,
-//            @Field("hit") int hit,
-//            @Field("cate") String cate
-//    );
-//
-//    @GET("post/")
-//    Call<List<Notice>> getTest();
-//
-//    //test용임 삭제해
-//    @GET("/posts")
-//    Call<List<Post>> getData(@Query("userId") String id);
 
 }

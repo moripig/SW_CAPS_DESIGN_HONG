@@ -1,6 +1,7 @@
 package net.skhu.notice;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -55,20 +56,13 @@ import java.util.Queue; //import
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
-//
-
-//
-
-
 public class NoticeActivity extends AppCompatActivity {
     RetrofitService retrofitService = new RetrofitService();
-    Button test_button; //게시판으로 돌아가는 버튼
-    Button list_button; //게시판으로 돌아가는 버튼
+
+    Button list_button;
     Button edit_button;
     Button delete_button;
     Button comment_button;
-    //    Button previous_button;
-    //    Button next_button;
 
     TextView textView_title;
     TextView textView_body;
@@ -97,13 +91,13 @@ public class NoticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
-        //목록으로 돌아가는 버튼 설정
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         list_button = findViewById(R.id.list_button);
         edit_button = findViewById(R.id.edit_button);
         delete_button = findViewById(R.id.delete_button);
         comment_button = findViewById(R.id.comment_button);
-//        previous_button = findViewById(R.id.previous_button);
-//        next_button = findViewById(R.id.next_button);
 
         textView_title=findViewById(R.id.textView_title);
         textView_body=findViewById(R.id.textView_body);
@@ -114,12 +108,12 @@ public class NoticeActivity extends AppCompatActivity {
 
         editText_create = (EditText)findViewById(R.id.editText_create);
 
-        //목록에서 클릭 시 ID가져옴
+        //해당 글 Idx
         id = getIntent().getExtras().getInt("id");
 
         NoticeApi noticeApi = retrofitService.getRetrofit();
 
-        //글 불러오기
+        //글 내용 가져오기
         Call<Notice> call = noticeApi.getPost(id);
         call.enqueue(new Callback<Notice>() {
             @Override
@@ -149,19 +143,17 @@ public class NoticeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Notice> call, Throwable t) {
-                System.out.println("실패");
+
             }
         });
-        //여기서부터 comment Test
-        System.out.println(id + "이 글의 id임");
-//        Call<List<Comment>> call2 = noticeApi.gettestc();
+
+        //댓글 가져오기
         Call<List<Comment>> call2 = noticeApi.getComment(id);
         call2.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
                 if(response.isSuccessful()){
                     if(response.body().size() !=0) {
-                        System.out.println("연결성공함");
                     list = response.body();
 
                     arrayList = new ArrayList<Comment>();
@@ -177,24 +169,22 @@ public class NoticeActivity extends AppCompatActivity {
                     recyclerView.setAdapter(commentAdapter);
                     }
                     else {
-                        System.out.println("연결실패함 리스폰 반응 문제");
+
                     }
 
                 }
                 else {
-                    System.out.println("commentTESt 연결 실패");
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                System.out.println("연결실패 TEst서버랑");
+
             }
         });
 
-        //commet test 연습종료
-
-        //목록으로 돌악가는 버튼
+        //목록으로 돌아가기
         list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,6 +192,7 @@ public class NoticeActivity extends AppCompatActivity {
             }
         });
 
+        //수정화면으로
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,6 +209,7 @@ public class NoticeActivity extends AppCompatActivity {
             }
         });
 
+        //삭제
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,7 +223,7 @@ public class NoticeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Notice> call, Response<Notice> response) {
                         if (response.isSuccessful()) {
-                            System.out.println("삭제완료");
+
                         } else {
                             Log.d("Test", "실패");
                         }
@@ -239,7 +231,7 @@ public class NoticeActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Notice> call, Throwable t) {
-                        System.out.println("실패");
+
                     }
                 });
                 startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
@@ -258,7 +250,7 @@ public class NoticeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {
                         if (response.isSuccessful()) {
-                            System.out.println("완료");
+
                         } else {
                             Log.d("Test", "실패");
                         }
@@ -266,14 +258,16 @@ public class NoticeActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Comment> call, Throwable t) {
-                        System.out.println("실패");
+
                     }
                 });
                 startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
             }
         });
 
-        //인덱스 차이가 날 수 있는데 +1 은 못하고 리스트 받아와서 그 다음인덱스 거를 해야할듯
+
+        //이전, 다음글 버튼, 구현x
+//        //인덱스 차이가 날 수 있는데 +1 은 못하고 리스트 순서대로? or DB저장방식을 변경?
 //        previous_button.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

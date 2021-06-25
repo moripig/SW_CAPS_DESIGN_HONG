@@ -1,5 +1,6 @@
 package net.skhu.notice;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -49,6 +50,9 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_temporary);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         editText_title = (EditText)findViewById(R.id.editText_title);
         editText_body = (EditText)findViewById(R.id.editText_body);
         editText_member = (EditText)findViewById(R.id.editText_member);
@@ -66,36 +70,23 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-//                Date d = new Date();
-//                int today = Integer.parseInt(format.format(d));
 
                 NoticeApi noticeApi = retrofitService.getRetrofit();
 
-                //사용자가 입력한 정보들
-                String title = editText_title.getText().toString();
-                String body = editText_body.getText().toString();
-                int start = getStartday();
-                int end = getEndday();
-                String loca= editText_loca.getText().toString();
-                int member = Integer.parseInt(editText_member.getText().toString());
-                int date = Integer.parseInt(format.format(new Date()));
-                int hit = 0;
-                String cate= "미정";
-                System.out.println(date);
-                Notice notice = new Notice(
-                        0,
-                        title,
-                        body,
-                        start,
-                        end,
-                        loca,
-                        member,
-                        date,
-                        hit,
-                        cate
-                );
 
-                Call<Notice> call = noticeApi.setPost(notice);
+                //사용자가 입력한 정보들
+                Call<Notice> call = noticeApi.setPost(new Notice(
+                        0,
+                        editText_title.getText().toString(),
+                        editText_body.getText().toString(),
+                        getStartday(),
+                        getEndday(),
+                        editText_loca.getText().toString(),
+                        Integer.parseInt(editText_member.getText().toString()),
+                        Integer.parseInt(format.format(new Date())),
+                        0,
+                        "미정"
+                ));
 
                 call.enqueue(new Callback<Notice>() {
                     @Override

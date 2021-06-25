@@ -1,5 +1,6 @@
 package net.skhu.notice;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -45,6 +46,9 @@ public class NoticeEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_edit);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         //수정할 게시글의 id와 작성일 가져옴
         int id = getIntent().getExtras().getInt("editId");

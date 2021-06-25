@@ -55,7 +55,6 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         }
     }
 
-    //객체 넣을 리스트
     ArrayList<Notice> arrayList;
     LayoutInflater layoutInflater;
 
