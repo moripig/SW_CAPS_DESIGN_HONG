@@ -172,7 +172,10 @@ public class CalendarActivity extends AppCompatActivity {
 
                                     }
                                 });
-                                startActivity(new Intent(CalendarActivity.this, CalendarActivity.class));
+                                Intent intent = new Intent(CalendarActivity.this, CalendarActivity.class);
+                                intent.putExtra("ID",userid);
+                                startActivity(intent);
+//                                startActivity(new Intent(CalendarActivity.this, CalendarActivity.class));
                             }
                         });
                         break;

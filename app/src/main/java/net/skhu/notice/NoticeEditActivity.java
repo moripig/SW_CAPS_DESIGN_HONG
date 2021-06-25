@@ -37,6 +37,7 @@ public class NoticeEditActivity extends AppCompatActivity {
 
     int startday;
     int endday;
+    int userid;
 
     //달력
     private DatePickerDialog.OnDateSetListener callbackMethodStart;
@@ -49,6 +50,9 @@ public class NoticeEditActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+
+        userid = getIntent().getExtras().getInt("ID");
 
         //수정할 게시글의 id와 작성일 가져옴
         int id = getIntent().getExtras().getInt("editId");
@@ -65,6 +69,8 @@ public class NoticeEditActivity extends AppCompatActivity {
         editText_body.setText(getIntent().getExtras().getString("editBody"));
         editText_loca.setText(getIntent().getExtras().getString("editLoca"));
         editText_member.setText(Integer.toString(getIntent().getExtras().getInt("editMember")));
+        System.out.println(editText_title);
+        System.out.println("반갑슴닝ㅁㄴㅇ리만ㄷ리");
 
         //달력
         this.InitializeView();
@@ -81,30 +87,20 @@ public class NoticeEditActivity extends AppCompatActivity {
 
                 NoticeApi noticeApi = retrofitService.getRetrofit();
 
-                //사용자가 입력한 정보 Notice 객체 만들기
-                String title = editText_title.getText().toString();
-                String body = editText_body.getText().toString();
-                int start = getStartday();
-                int end = getEndday();
-                String loca= editText_loca.getText().toString();
-                int member = Integer.parseInt(editText_member.getText().toString());
-                int hit = 0;
-                String cate= "미정";
-                Notice notice = new Notice(
+                //사용자가 입력한 정보 수정내용 Notice 객체 만들기
+                Notice editNotice = new Notice(
                         id,
-                        title,
-                        body,
-                        start,
-                        end,
-                        loca,
-                        member,
+                        editText_title.getText().toString(),
+                        editText_body.getText().toString(),
+                        getStartday(),
+                        getEndday(),
+                        editText_loca.getText().toString(),
+                        Integer.parseInt(editText_member.getText().toString()),
                         date,
-                        hit,
-                        cate
+                        userid,
+                        "미정"
                 );
-
-                Call<Notice> call = noticeApi.editPost(notice);
-
+                Call<Notice> call = noticeApi.editPost(editNotice);
                 call.enqueue(new Callback<Notice>() {
                     @Override
                     public void onResponse(Call<Notice> call, Response<Notice> response) {
@@ -119,8 +115,10 @@ public class NoticeEditActivity extends AppCompatActivity {
 
                     }
                 });
-
-                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeEditActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
             }
         });
 
@@ -129,7 +127,10 @@ public class NoticeEditActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeEditActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
             }
         });
         

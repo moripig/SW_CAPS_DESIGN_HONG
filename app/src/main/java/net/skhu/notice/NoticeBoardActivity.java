@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.lakue.pagingbutton.OnPageSelectListener;
 
+import net.skhu.schedule.CalendarActivity;
+import net.skhu.schedule.SchedulePopup;
 import net.skhu.traveler.MainActivity;
 import net.skhu.traveler.R;
 
@@ -48,6 +50,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
     List<Notice> list = new ArrayList<>();
 
     int pagenumber=0;
+    int userid;
 
     //첫화면
     @Override
@@ -58,6 +61,11 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        Intent intent = getIntent();
+        userid = (int) intent.getSerializableExtra("ID");
+
+        System.out.println(userid);
+
         findViewById(R.id.setting_button).setOnClickListener(this);
 
         create_button = findViewById(R.id.create_button);
@@ -66,6 +74,8 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         previous_button = findViewById(R.id.previous_button);
         next_button = findViewById(R.id.next_button);
 
+
+
         //서버에서 목록 가져옴
         getPageList(pagenumber);
 
@@ -73,7 +83,10 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         create_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NoticeBoardActivity.this, TemporaryNoticeActivity.class));
+                Intent intent = new Intent(NoticeBoardActivity.this, TemporaryNoticeActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeBoardActivity.this, TemporaryNoticeActivity.class));
             }
         });
 
@@ -128,7 +141,8 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
                     for(int i=0; i < list.size(); i++) {
                         arrayList.add((list.get(i)));
                     }
-                    noticeListAdapter = new NoticeListAdapter(getApplicationContext(), arrayList);
+
+                    noticeListAdapter = new NoticeListAdapter(getApplicationContext(), arrayList, userid);
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.notice_list);
                     recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -151,7 +165,10 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.setting_button:
-                startActivity(new Intent(NoticeBoardActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeBoardActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeBoardActivity.this, NoticeBoardActivity.class));
         }
     }
 
