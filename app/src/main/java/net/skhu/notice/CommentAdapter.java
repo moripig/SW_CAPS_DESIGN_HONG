@@ -59,10 +59,5 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     public void onBindViewHolder(final ViewHolder viewHolder, int index) {
         viewHolder.setData(index);
 
-        //id넘길 때임
-//        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onCli
-//        });
     }
 }

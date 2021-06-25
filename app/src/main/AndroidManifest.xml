@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.skhu.traveler">
+    package="net.skhu.traveler" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler"
-        android:usesCleartextTraffic="true">
-        <activity android:name="net.skhu.schedule.ScheduleCreateActivity"></activity>
+        android:usesCleartextTraffic="true" >
+        <activity android:name="net.skhu.schedule.SchedulePopup" android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name="net.skhu.schedule.ScheduleCreateActivity" />
         <activity android:name="net.skhu.schedule.ScheduleListActivity" />
         <activity android:name=".KakaoAPI" />
         <activity android:name=".ResultSearchKeyword" />
@@ -40,8 +41,8 @@
             android:value="rfpi6isixt" />
 
         <activity android:name=".MapActivity" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="net.skhu.schedule.CalendarActivity" />
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
