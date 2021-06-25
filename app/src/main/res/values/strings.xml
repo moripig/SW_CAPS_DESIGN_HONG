@@ -13,4 +13,13 @@
     <string name="cancel">취소</string>
     <string name="save">저장</string>
     <string name="action_create">생성</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="forgot_your_password">Forgot your password ?</string>
+    <string name="go">GO</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="next">NEXT</string>
+    <string name="register">REGISTER</string>
+    <string name="et_nickname">yourname</string>
+    <string name="login">로그인</string>
 </resources>

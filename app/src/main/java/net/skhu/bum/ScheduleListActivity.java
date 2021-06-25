@@ -17,7 +17,7 @@ import net.skhu.traveler.R;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class ScheduleListActivitye extends AppCompatActivity {
+public class ScheduleListActivity extends AppCompatActivity {
     int idx;
     ScheduleListAdapter scheduleListAdapter;
     ArrayList<Schedule> arrayList;

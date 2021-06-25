@@ -43,6 +43,7 @@ public class SearchActivity extends AppCompatActivity {
         total = new ArrayList<String>();
         today = new ArrayList<String>();
         arrayList = (List<SeoulInfo>) getIntent().getSerializableExtra("seoulInfo");
+
         // 검색에 사용할 데이터을 미리 저장한다.
 
         for(int i = 0; i< arrayList.size(); i++) {
@@ -61,8 +62,12 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String data = (String) adapterView.getItemAtPosition(position);
+                SeoulInfo clickedItem = arrayList.get(position);
+                String x = clickedItem.getX();
+                String y = clickedItem.getY();
                 Intent intent1 = new Intent(SearchActivity.this,LoginActivity.class);
-                intent1.putExtra("searchData",data);
+                intent1.putExtra("x",x);
+                intent1.putExtra("y",y);
             }
         });
 

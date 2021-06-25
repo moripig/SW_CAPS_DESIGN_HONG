@@ -39,7 +39,7 @@ public class BumMainActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.go_login1:
-                Intent intent2 = new Intent(BumMainActivity.this, MyScheduleActivity.class);
+                Intent intent2 = new Intent(BumMainActivity.this, Login2Activity.class);
                 startActivity(intent2);
                 break;
             case R.id.go_covidInfo:
