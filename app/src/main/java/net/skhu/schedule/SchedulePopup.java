@@ -54,7 +54,7 @@ public class SchedulePopup extends Activity {
     int startday;
     int endday;
     String buttoType;
-
+    int userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,7 @@ public class SchedulePopup extends Activity {
         schedule = (Schedule) intent.getSerializableExtra("schedule");
         //어느 버튼으로 들어왔는지 판별하기 위한
         buttoType = (String) intent.getSerializableExtra("button");
+        userid = (int) intent.getSerializableExtra("ID");
 
         button_schedule_start = findViewById(R.id.button_schedule_start);
         button_schedule_end = findViewById(R.id.button_schedule_end);
@@ -120,7 +121,7 @@ public class SchedulePopup extends Activity {
                     getStartday(),
                     getEndday(),
                     Integer.parseInt(editText_schedule_total.getText().toString()),
-                    1
+                    userid
             );
             Call<Schedule> call = scheduleApi.setSchedule(newSchedule);
             call.enqueue(new Callback<Schedule>() {
@@ -136,8 +137,10 @@ public class SchedulePopup extends Activity {
 
                 }
             });
-
-            startActivity(new Intent(SchedulePopup.this, CalendarActivity.class));
+            Intent intent = new Intent(SchedulePopup.this, CalendarActivity.class);
+            intent.putExtra("ID", userid);
+            startActivity(intent);
+//            startActivity(new Intent(SchedulePopup.this, CalendarActivity.class));
         }
         //수정한 것 서버에 전송
         else if(buttoType.equals("edit")) {
@@ -163,7 +166,10 @@ public class SchedulePopup extends Activity {
 
                 }
             });
-            startActivity(new Intent(SchedulePopup.this, CalendarActivity.class));
+            Intent intent = new Intent(SchedulePopup.this, CalendarActivity.class);
+            intent.putExtra("ID", userid);
+            startActivity(intent);
+//            startActivity(new Intent(SchedulePopup.this, CalendarActivity.class));
         }
     }
 

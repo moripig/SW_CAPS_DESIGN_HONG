@@ -1,16 +1,27 @@
 package net.skhu.schedule;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
+import android.app.DatePickerDialog;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CalendarView;
+import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -19,6 +30,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
+import net.skhu.notice.NoticeActivity;
+import net.skhu.notice.NoticeEditActivity;
 import net.skhu.notice.RetrofitService;
 import net.skhu.traveler.R;
 
@@ -35,7 +48,6 @@ public class CalendarActivity extends AppCompatActivity {
 
     RetrofitService retrofitService = new RetrofitService();
     List<Schedule> schedulelist;
-    String idx;
 
     public TextView select_day_TextView;
     public TextView schedule_textView;
@@ -52,7 +64,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        idx = getIntent().getStringExtra("LoginIdx");
+
         select_day_TextView = findViewById(R.id.select_day_TextView);
         schedule_textView = findViewById(R.id.schedule_textView);
         schedule_save_button = findViewById(R.id.schedule_save_button);
