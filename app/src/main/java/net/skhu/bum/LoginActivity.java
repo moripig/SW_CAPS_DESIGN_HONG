@@ -8,16 +8,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.skhu.notice.NoticeBoardActivity;
 import net.skhu.traveler.R;
 
 public class LoginActivity extends AppCompatActivity {
-    String idx;
+    int  idx;
+    String temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        idx = getIntent().getStringExtra("loginId");
+       temp =  getIntent().getStringExtra("loginId");
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -31,10 +34,13 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "홈 메뉴 클릭", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.menu_board) {
-            Toast.makeText(this, "게시판 메뉴 클릭", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "게시판 클릭", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, NoticeBoardActivity.class);
+            intent.putExtra("userid",idx);
+            startActivity(intent);
             return true;
         } else if (id == R.id.menu_shedule) {
-            Toast.makeText(this, "내 일정 메뉴 클릭", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ScheduleListActivity.class);
             intent.putExtra("loginId",idx);
             startActivity(intent);

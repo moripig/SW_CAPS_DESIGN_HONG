@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.skhu.traveler.MainActivity;
 import net.skhu.traveler.R;
-import net.skhu.traveler.SearchListAdapter;
 
 import java.util.ArrayList;
 
@@ -49,9 +46,11 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         @Override
         public void onClick(View view) {
 
-            Notice notice = arrayList.get(super.getAdapterPosition());
-            String s = String.format("index: %d, title: %s", super.getAdapterPosition(), notice.getTitle());
-            Toast.makeText(view.getContext(), s, Toast.LENGTH_SHORT).show();
+            NoticeBoardActivity activity = (NoticeBoardActivity) itemTitle.getContext();
+            Intent intent = new Intent(activity, NoticeActivity.class);
+            intent.putExtra("writeridx", arrayList.get(getAdapterPosition()).getWriteridx());
+            activity.startActivity(intent);
+
         }
     }
 

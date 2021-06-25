@@ -5,9 +5,6 @@ public class Member {
     String id;
     String pwd;
     String name;
-
-
-
     String address;
     String gender;
     String email;

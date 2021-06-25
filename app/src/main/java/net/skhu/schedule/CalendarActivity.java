@@ -1,27 +1,16 @@
 package net.skhu.schedule;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
-import android.app.DatePickerDialog;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.Spinner;
-
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -30,8 +19,6 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
-import net.skhu.notice.NoticeActivity;
-import net.skhu.notice.NoticeEditActivity;
 import net.skhu.notice.RetrofitService;
 import net.skhu.traveler.R;
 
@@ -56,6 +43,7 @@ public class CalendarActivity extends AppCompatActivity {
     public Button schedule_edit_button;
     public Button schedule_delete_button;
 
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +52,10 @@ public class CalendarActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        //아이디1번째
+        Intent intent = getIntent();
+        userId = (int) intent.getSerializableExtra("ID");
 
         select_day_TextView = findViewById(R.id.select_day_TextView);
         schedule_textView = findViewById(R.id.schedule_textView);
@@ -77,7 +69,9 @@ public class CalendarActivity extends AppCompatActivity {
 //        calendarView.setSelectedDate(CalendarDay.today());
 
         ScheduleApi scheduleApi = retrofitService.getScheduleRetrofit();
-        Call<List<Schedule>> call = scheduleApi.getScheduleList(1);
+
+        //여기가 id 2번째
+        Call<List<Schedule>> call = scheduleApi.getScheduleList(userId);
         call.enqueue(new Callback<List<Schedule>>() {
             @Override
             public void onResponse(Call<List<Schedule>> call, Response<List<Schedule>> response) {
@@ -112,7 +106,7 @@ public class CalendarActivity extends AppCompatActivity {
                 //기본 적으로 보이는건 일정 만들기 버튼 1개
                 select_day_TextView.setVisibility(View.VISIBLE);
                 select_day_TextView.setText(String.format("%d / %d / %d",year, month, dayOfMonth));
-
+                schedule_save_button.setVisibility(View.VISIBLE);
                 //클릭한 달력 날짜
                 int day = Integer.parseInt(year + String.format("%02d",month) + String.format("%02d",dayOfMonth));
 
@@ -125,7 +119,7 @@ public class CalendarActivity extends AppCompatActivity {
                                 (((schedulelist.get(i).getEnd()) /100) %100),((schedulelist.get(i).getEnd()) % 100)));
                         schedule_save_button.setVisibility(View.INVISIBLE);
                         schedule_textView.setVisibility(View.VISIBLE);
-                        schedule_textView.setText("장소 : " + schedulelist.get(i).getPlace() + "\n인원 : " + schedulelist.get(i).getTotal());
+                        schedule_textView.setText("장소 : " + schedulelist.get(i).getPlace() + "\n\n인원 : " + schedulelist.get(i).getTotal());
                         schedule_edit_button.setVisibility(View.VISIBLE);
                         schedule_delete_button.setVisibility(View.VISIBLE);
 
@@ -139,6 +133,7 @@ public class CalendarActivity extends AppCompatActivity {
                                 Intent intent = new Intent(CalendarActivity.this, SchedulePopup.class);
                                 intent.putExtra("button","edit");
                                 intent.putExtra("schedule",schedulelist.get(finalI));
+                                intent.putExtra("ID", userId);
                                 startActivity(intent);
 //                                startActivity(new Intent(CalendarActivity.this, SchedulePopup.class));
                             }
@@ -188,6 +183,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CalendarActivity.this, SchedulePopup.class);
                 intent.putExtra("button","save");
+                intent.putExtra("ID", userId);
                 startActivity(intent);
 //                startActivity(new Intent(CalendarActivity.this, ScheduleCreateActivity.class));
             }

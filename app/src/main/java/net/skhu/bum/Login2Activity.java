@@ -152,7 +152,10 @@ public class Login2Activity extends AppCompatActivity {
 
 
             Intent intent2 = new Intent(Login2Activity.this, LoginActivity.class);
+            Log.w("인덱스값",member.getIdx());
             intent2.putExtra("loginId",member.getIdx());
+
+
             startActivity(intent2);
             finish();
         } catch (Exception e) {
