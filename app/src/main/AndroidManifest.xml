@@ -29,8 +29,6 @@
         <activity android:name="net.skhu.notice.NoticeBoardActivity" />
         <activity android:name="net.skhu.notice.TemporaryNoticeActivity" />
         <activity android:name="net.skhu.notice.NoticeEditActivity" />
-        <activity android:name="net.skhu.bum.BumMainActivity" />
-        <activity android:name="net.skhu.bum.LoginActivity" />
         <activity android:name="net.skhu.bum.MyScheduleActivity" />
         <activity android:name="net.skhu.bum.ScheduleListActivity" />
         <activity android:name="net.skhu.bum.SearchActivity" />

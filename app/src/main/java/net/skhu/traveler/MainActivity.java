@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent11 = new Intent(MainActivity.this, net.skhu.bum.BumMainActivity.class);
+                Intent intent11 = new Intent(MainActivity.this, net.skhu.bum.Login2Activity.class);
 
                 startActivity(intent11);
             }
