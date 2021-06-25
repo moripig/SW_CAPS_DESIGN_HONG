@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler"
         android:usesCleartextTraffic="true">
-        <activity android:name=".KakaoAPI"></activity>
+        <activity android:name=".ApiInterface"></activity>
+        <activity android:name=".MapActivity4" />
+        <activity android:name=".ApiClient" />
+        <activity android:name=".KakaoAPI" />
         <activity android:name=".ResultSearchKeyword" />
         <activity android:name=".KotlinTemp" />
         <activity android:name=".MapActivity3" />

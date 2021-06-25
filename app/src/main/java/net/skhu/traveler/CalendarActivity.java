@@ -15,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialCalendar;
+
 public class CalendarActivity extends AppCompatActivity {
 
 
@@ -36,6 +38,8 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        //MaterialCalendar materialCalendarView = findViewById(R.id.calendarView);
+        //materialCalendarView.setOnDateChangedListener(this);
 
         Spinner spinner = findViewById(R.id.spinner);
         textViewLocation = findViewById(R.id.textViewLocation);
