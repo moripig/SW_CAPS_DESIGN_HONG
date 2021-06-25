@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("email", result.getKakaoAccount().getEmail());
                         intent.putExtra("sex", result.getKakaoAccount().getGender());
                         intent.putExtra("age", result.getKakaoAccount().getAgeRange());
+
                         startActivity(intent);
 
                         Toast.makeText(LoginActivity.this, "로그인 성공! 환영합니다.", Toast.LENGTH_SHORT).show();
