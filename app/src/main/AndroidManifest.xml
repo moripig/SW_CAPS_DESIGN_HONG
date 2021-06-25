@@ -46,7 +46,6 @@
             android:value="rfpi6isixt" />
 
         <activity android:name=".MapActivity" />
-        <activity android:name=".CalendarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
