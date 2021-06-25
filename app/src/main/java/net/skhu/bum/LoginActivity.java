@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.skhu.traveler.R;
 
 public class LoginActivity extends AppCompatActivity {
-    int idx;
+    String idx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        idx = getIntent().getIntExtra("loginId",0);
+        idx = getIntent().getStringExtra("loginId");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
