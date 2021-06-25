@@ -81,6 +81,11 @@ public class NoticeActivity extends AppCompatActivity {
     int member;
     int start;
     int end;
+    int userid;
+
+    boolean own=false;
+
+    Notice notice;
 
     List<Comment> list = new ArrayList<>();
     CommentAdapter commentAdapter; // 리사이클 뷰 어뎁터
@@ -111,6 +116,11 @@ public class NoticeActivity extends AppCompatActivity {
         //해당 글 Idx
         id = getIntent().getExtras().getInt("id");
 
+        Intent intent = getIntent();
+        //현재 접속 한 userid임
+//        userid = (int) intent.getSerializableExtra("ID");
+        userid = getIntent().getExtras().getInt("ID");
+
         NoticeApi noticeApi = retrofitService.getRetrofit();
 
         //글 내용 가져오기
@@ -119,21 +129,24 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Notice> call, Response<Notice> response) {
                 if(response.isSuccessful()){
-                    Notice notice = response.body();
-                    date=notice.getDate();
-                    title=notice.getTitle();
-                    body=notice.getBody();
-                    member=notice.getMember();
-                    loca=notice.getLoca();
-                    start=notice.getStart();
-                    end=notice.getEnd();
+                    notice = response.body();
 
-                    textView_title.setText(title);
-                    textView_body.setText(body);
-                    textView_loca.setText("장소 : " + loca);
-                    textView_member.setText("인원 : " + member);
-                    textView_createDay.setText("작성일 : " + date);
-                    textView_day.setText("기간 : " + start + " ~ " + end);
+                    textView_title.setText(notice.getTitle());
+                    textView_body.setText(notice.getBody());
+                    textView_loca.setText("장소 : " + notice.getLoca());
+                    textView_member.setText("인원 : " + notice.getMember());
+                    textView_createDay.setText("작성일 : " + notice.getDate());
+                    textView_day.setText("기간 : " + notice.getStart() + " ~ " + notice.getEnd());
+
+                    if(userid == notice.getWriteridx()) {
+                        own = true;
+                        edit_button.setVisibility(View.VISIBLE);
+                        delete_button.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        edit_button.setVisibility(View.GONE);
+                        delete_button.setVisibility(View.GONE);
+                    }
 
                 }
                 else {
@@ -154,11 +167,12 @@ public class NoticeActivity extends AppCompatActivity {
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
                 if(response.isSuccessful()){
                     if(response.body().size() !=0) {
-                    list = response.body();
 
-                    arrayList = new ArrayList<Comment>();
-                    for(int i=0; i < list.size(); i++) {
-                        arrayList.add((list.get(i)));
+                        list = response.body();
+
+                        arrayList = new ArrayList<Comment>();
+                        for(int i=0; i < list.size(); i++) {
+                            arrayList.add((list.get(i)));
                     }
 
                     commentAdapter = new CommentAdapter(getApplicationContext(), arrayList);
@@ -188,7 +202,10 @@ public class NoticeActivity extends AppCompatActivity {
         list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
             }
         });
 
@@ -197,14 +214,16 @@ public class NoticeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(NoticeActivity.this, NoticeEditActivity.class);
-                intent.putExtra("editId",id);
-                intent.putExtra("editDate",date);
-                intent.putExtra("editTitle", title);
-                intent.putExtra("editBody", body);
-                intent.putExtra("editLoca", loca);
-                intent.putExtra("editMember", member);
-                intent.putExtra("editStart", start);
-                intent.putExtra("editEnd", end);
+                //나중에 객체로 전송하기
+                intent.putExtra("editId",notice.getId());
+                intent.putExtra("editDate", notice.getDate());
+                intent.putExtra("editTitle", notice.getTitle());
+                intent.putExtra("editBody", notice.getBody());
+                intent.putExtra("editLoca", notice.getLoca());
+                intent.putExtra("editMember", notice.getMember());
+                intent.putExtra("editStart", notice.getStart());
+                intent.putExtra("editEnd", notice.getEnd());
+                intent.putExtra("ID", userid);
                 startActivity(intent);
             }
         });
@@ -234,7 +253,10 @@ public class NoticeActivity extends AppCompatActivity {
 
                     }
                 });
-                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
             }
         });
 
@@ -245,7 +267,7 @@ public class NoticeActivity extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
                 NoticeApi noticeApi = retrofitService.getRetrofit();
 
-                Call<Comment> call = noticeApi.setComment(new Comment(0,editText_create.getText().toString(),Integer.parseInt(format.format(new Date())), id, id));
+                Call<Comment> call = noticeApi.setComment(new Comment(0,editText_create.getText().toString(),Integer.parseInt(format.format(new Date())), id, userid));
                 call.enqueue(new Callback<Comment>() {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {
@@ -261,7 +283,12 @@ public class NoticeActivity extends AppCompatActivity {
 
                     }
                 });
-                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(NoticeActivity.this, NoticeActivity.class);
+                intent.putExtra("ID",userid);
+                intent.putExtra("id", id);
+                startActivity(intent);
+
+//                startActivity(new Intent(NoticeActivity.this, NoticeBoardActivity.class));
             }
         });
 
