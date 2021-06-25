@@ -40,6 +40,7 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
 
     int startday;
     int endday;
+    int userid;
 
     //달력
     private DatePickerDialog.OnDateSetListener callbackMethodStart;
@@ -53,6 +54,9 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        Intent intent = getIntent();
+        userid = (int) intent.getSerializableExtra("ID");
+        System.out.println(userid);
         editText_title = (EditText)findViewById(R.id.editText_title);
         editText_body = (EditText)findViewById(R.id.editText_body);
         editText_member = (EditText)findViewById(R.id.editText_member);
@@ -65,14 +69,10 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
         //제목 + 내용 입력
         create_notice_button = findViewById(R.id.edit_notice_button);
         create_notice_button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-
                 NoticeApi noticeApi = retrofitService.getRetrofit();
-
 
                 //사용자가 입력한 정보들
                 Call<Notice> call = noticeApi.setPost(new Notice(
@@ -84,7 +84,7 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
                         editText_loca.getText().toString(),
                         Integer.parseInt(editText_member.getText().toString()),
                         Integer.parseInt(format.format(new Date())),
-                        0,
+                        userid,
                         "미정"
                 ));
 
@@ -102,8 +102,10 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
 
                     }
                 });
-
-                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
             }
         });
 
@@ -112,7 +114,10 @@ public class TemporaryNoticeActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
+                Intent intent = new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class);
+                intent.putExtra("ID",userid);
+                startActivity(intent);
+//                startActivity(new Intent(TemporaryNoticeActivity.this, NoticeBoardActivity.class));
             }
         });
     }

@@ -28,13 +28,13 @@ public class Notice {
     @SerializedName("date")
     private int date;
 
-    @SerializedName("writeridx")
-    private int writeridx;
+    @SerializedName("hit")
+    private int hit;
 
     @SerializedName("cate")
     private String cate;
 
-    public Notice(int id, String title, String body, int start, int end, String loca, int member, int date, int userid, String cate) {
+    public Notice(int id, String title, String body, int start, int end, String loca, int member, int date, int hit, String cate) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -43,7 +43,7 @@ public class Notice {
         this.loca = loca;
         this.member = member;
         this.date = date;
-        this.writeridx = userid;
+        this.hit = hit;
         this.cate = cate;
     }
 
@@ -79,8 +79,8 @@ public class Notice {
         return date;
     }
 
-    public int getWriteridx() {
-        return writeridx;
+    public int getHit() {
+        return hit;
     }
 
     public String getCate() {
@@ -119,8 +119,8 @@ public class Notice {
         this.date = date;
     }
 
-    public void setWriteridx(int writeridx) {
-        this.writeridx = writeridx;
+    public void setHit(int hit) {
+        this.hit = hit;
     }
 
     public void setCate(String cate) {
