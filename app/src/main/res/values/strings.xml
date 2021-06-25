@@ -22,4 +22,5 @@
     <string name="register">REGISTER</string>
     <string name="et_nickname">yourname</string>
     <string name="login">로그인</string>
+    <string name="btn_join">회원가입</string>
 </resources>

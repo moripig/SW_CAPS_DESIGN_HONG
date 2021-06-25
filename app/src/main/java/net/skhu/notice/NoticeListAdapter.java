@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.skhu.traveler.MainActivity;
 import net.skhu.traveler.R;
-import net.skhu.traveler.SearchListAdapter;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,7 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         TextView itemWriter;
         TextView itemDate;
         TextView itemDay;
+
 
         //어느 택스트를 넣을 지?
         public ViewHolder(View view) {
@@ -48,7 +47,6 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
 
         @Override
         public void onClick(View view) {
-
             Notice notice = arrayList.get(super.getAdapterPosition());
             String s = String.format("index: %d, title: %s", super.getAdapterPosition(), notice.getTitle());
             Toast.makeText(view.getContext(), s, Toast.LENGTH_SHORT).show();
@@ -57,10 +55,11 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
 
     ArrayList<Notice> arrayList;
     LayoutInflater layoutInflater;
-
-    public NoticeListAdapter (Context context, ArrayList<Notice> arrayList) {
+    int userid;
+    public NoticeListAdapter (Context context, ArrayList<Notice> arrayList, int userid) {
         this.layoutInflater = LayoutInflater.from(context);
         this.arrayList = arrayList;
+        this.userid = userid;
     }
 
     @Override
@@ -83,6 +82,7 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), NoticeActivity.class);
                 intent.putExtra("id", arrayList.get(index).getId());
+                intent.putExtra("ID", userid);
                 v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
 
 

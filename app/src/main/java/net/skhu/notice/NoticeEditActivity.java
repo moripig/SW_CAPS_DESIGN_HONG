@@ -1,8 +1,5 @@
 package net.skhu.notice;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +9,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import net.skhu.traveler.R;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import net.skhu.traveler.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -133,7 +130,7 @@ public class NoticeEditActivity extends AppCompatActivity {
 //                startActivity(new Intent(NoticeEditActivity.this, NoticeBoardActivity.class));
             }
         });
-        
+
 
     }
     //달력

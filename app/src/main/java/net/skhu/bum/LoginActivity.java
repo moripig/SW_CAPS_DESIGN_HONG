@@ -9,16 +9,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.skhu.notice.NoticeBoardActivity;
+import net.skhu.schedule.CalendarActivity;
 import net.skhu.traveler.R;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     int  idx;
-    String temp;
+    List<SeoulInfo> seoulInfoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       temp =  getIntent().getStringExtra("loginId");
+        idx = getIntent().getIntExtra("ID",0);
+
     }
 
     @Override
@@ -30,29 +35,40 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_home) {
-            Toast.makeText(this, "홈 메뉴 클릭", Toast.LENGTH_SHORT).show();
+        if (id == R.id.menu_covid_info) {
+            Toast.makeText(this, "코로나 현황", Toast.LENGTH_SHORT).show();
+            CovidInfo covid = new CovidInfo();
+            SeoulLocation location = new SeoulLocation();
+            location.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            covid.start(location.getSeoulInfo());
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            seoulInfoList = covid.getSeoulInfo();
+            Intent intent1 = new Intent(LoginActivity.this, SearchActivity.class);
+            intent1.putExtra("seoulInfo", (Serializable) seoulInfoList);
+            startActivity(intent1);
             return true;
         } else if (id == R.id.menu_board) {
-            Toast.makeText(this, "게시판 클릭", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "게시판 ", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, NoticeBoardActivity.class);
-            intent.putExtra("userid",idx);
+            intent.putExtra("ID", idx);
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_shedule) {
-            Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ScheduleListActivity.class);
-            intent.putExtra("loginId",idx);
+            Toast.makeText(this, "내 일정", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, CalendarActivity.class);
+            intent.putExtra("ID", idx);
             startActivity(intent);
             return true;
-        } else if (id == R.id.menu_logout) {
-            Toast.makeText(this, "로그아웃 메뉴 클릭", Toast.LENGTH_SHORT).show();
-            return true;
-        } else if (id == R.id.menu_status) {
-            Toast.makeText(this, "내 상태 메뉴 클릭", Toast.LENGTH_SHORT).show();
-            return true;
         }
-        return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);
     }
-
 }

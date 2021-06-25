@@ -1,60 +1,33 @@
 package net.skhu.notice;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import net.skhu.traveler.R;
-
-//
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
+import net.skhu.traveler.R;
 
-import com.google.gson.JsonArray;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 //
-import android.os.Bundle;
-import android.util.Log;
-
-import java.io.IOException;
-import java.util.Queue;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import java.util.LinkedList; //import
-import java.util.Queue; //import
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+//
 
 public class NoticeActivity extends AppCompatActivity {
     RetrofitService retrofitService = new RetrofitService();
@@ -115,8 +88,6 @@ public class NoticeActivity extends AppCompatActivity {
 
         //해당 글 Idx
         id = getIntent().getExtras().getInt("id");
-
-        Intent intent = getIntent();
         //현재 접속 한 userid임
 //        userid = (int) intent.getSerializableExtra("ID");
         userid = getIntent().getExtras().getInt("ID");
@@ -173,14 +144,14 @@ public class NoticeActivity extends AppCompatActivity {
                         arrayList = new ArrayList<Comment>();
                         for(int i=0; i < list.size(); i++) {
                             arrayList.add((list.get(i)));
-                    }
+                        }
 
-                    commentAdapter = new CommentAdapter(getApplicationContext(), arrayList);
-                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.comment_list);
-                    recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    recyclerView.setItemAnimator((new DefaultItemAnimator()));
-                    recyclerView.setAdapter(commentAdapter);
+                        commentAdapter = new CommentAdapter(getApplicationContext(), arrayList);
+                        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.comment_list);
+                        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        recyclerView.setItemAnimator((new DefaultItemAnimator()));
+                        recyclerView.setAdapter(commentAdapter);
                     }
                     else {
 

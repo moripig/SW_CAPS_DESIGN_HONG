@@ -14,8 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Traveler"
         android:usesCleartextTraffic="true">
-        <activity android:name="net.skhu.schedule.ScheduleCreateActivity" />
-        <activity android:name="net.skhu.schedule.ScheduleListActivity" />
         <activity android:name=".KakaoAPI" />
         <activity android:name=".ResultSearchKeyword" />
         <activity android:name=".KotlinTemp" />
@@ -38,6 +36,7 @@
         <activity android:name="net.skhu.bum.SearchActivity" />
         <activity android:name="net.skhu.bum.Login2Activity" />
         <activity android:name="net.skhu.bum.Join2Activity" />
+        <activity android:name="net.skhu.schedule.CalendarActivity" />
 
 
         <meta-data

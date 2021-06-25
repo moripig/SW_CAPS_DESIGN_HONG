@@ -87,7 +87,6 @@ public class Join2Activity extends AppCompatActivity {
         etRepeatPassword = findViewById(R.id.et_repeatPassword);
         etName = findViewById(R.id.et_nickname);
         etEmail = findViewById(R.id.et_email);
-        etSex = findViewById(R.id.radio_sex);
         etAddress = findViewById(R.id.et_address);
     }
 
@@ -259,15 +258,15 @@ public class Join2Activity extends AppCompatActivity {
 
             CustomTask task = new CustomTask();
 
-            String result = task.execute(sendMsg).get();
-            Log.w("받은값",result);
-
-            Log.w("execute","execute FAILED!");
+            task.execute(sendMsg);
+            Toast.makeText(Join2Activity.this, "가입성공!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.w("join-error  ","회원가입 실패!");
+        }
+        finally {
             Intent intent2 = new Intent(Join2Activity.this, Login2Activity.class);
             startActivity(intent2);
             finish();
-        } catch (Exception e) {
-            Log.w("join-error  ","회원가입 실패!");
         }
     }
 }

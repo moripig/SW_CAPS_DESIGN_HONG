@@ -28,8 +28,8 @@ public class Notice {
     @SerializedName("date")
     private int date;
 
-    @SerializedName("hit")
-    private int hit;
+    @SerializedName("writeridx")
+    private int writeridx;
 
     @SerializedName("cate")
     private String cate;
@@ -43,7 +43,7 @@ public class Notice {
         this.loca = loca;
         this.member = member;
         this.date = date;
-        this.hit = hit;
+        this.writeridx = hit;
         this.cate = cate;
     }
 
@@ -79,8 +79,8 @@ public class Notice {
         return date;
     }
 
-    public int getHit() {
-        return hit;
+    public int getWriteridx() {
+        return writeridx;
     }
 
     public String getCate() {
@@ -119,8 +119,8 @@ public class Notice {
         this.date = date;
     }
 
-    public void setHit(int hit) {
-        this.hit = hit;
+    public void setWriteridx(int writeridx) {
+        this.writeridx = writeridx;
     }
 
     public void setCate(String cate) {

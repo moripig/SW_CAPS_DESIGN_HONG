@@ -1,28 +1,19 @@
 package net.skhu.notice;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.lakue.pagingbutton.OnPageSelectListener;
-
-import net.skhu.schedule.CalendarActivity;
-import net.skhu.schedule.SchedulePopup;
-import net.skhu.traveler.MainActivity;
 import net.skhu.traveler.R;
 
 import java.util.ArrayList;
@@ -31,8 +22,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NoticeBoardActivity extends AppCompatActivity implements View.OnClickListener {
     RetrofitService retrofitService = new RetrofitService();
@@ -62,9 +51,7 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
         actionBar.hide();
 
         Intent intent = getIntent();
-        userid = (int) intent.getSerializableExtra("ID");
-
-        System.out.println(userid);
+        userid = getIntent().getIntExtra("ID",0);
 
         findViewById(R.id.setting_button).setOnClickListener(this);
 
@@ -171,5 +158,4 @@ public class NoticeBoardActivity extends AppCompatActivity implements View.OnCli
 //                startActivity(new Intent(NoticeBoardActivity.this, NoticeBoardActivity.class));
         }
     }
-
 }

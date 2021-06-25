@@ -43,7 +43,7 @@ public class CalendarActivity extends AppCompatActivity {
     public Button schedule_edit_button;
     public Button schedule_delete_button;
 
-    int userId;
+    int userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         //아이디1번째
         Intent intent = getIntent();
-        userId = (int) intent.getSerializableExtra("ID");
+        userid = getIntent().getIntExtra("ID",0);
 
         select_day_TextView = findViewById(R.id.select_day_TextView);
         schedule_textView = findViewById(R.id.schedule_textView);
@@ -71,7 +71,7 @@ public class CalendarActivity extends AppCompatActivity {
         ScheduleApi scheduleApi = retrofitService.getScheduleRetrofit();
 
         //여기가 id 2번째
-        Call<List<Schedule>> call = scheduleApi.getScheduleList(userId);
+        Call<List<Schedule>> call = scheduleApi.getScheduleList(userid);
         call.enqueue(new Callback<List<Schedule>>() {
             @Override
             public void onResponse(Call<List<Schedule>> call, Response<List<Schedule>> response) {
@@ -133,7 +133,7 @@ public class CalendarActivity extends AppCompatActivity {
                                 Intent intent = new Intent(CalendarActivity.this, SchedulePopup.class);
                                 intent.putExtra("button","edit");
                                 intent.putExtra("schedule",schedulelist.get(finalI));
-                                intent.putExtra("ID", userId);
+                                intent.putExtra("ID", userid);
                                 startActivity(intent);
 //                                startActivity(new Intent(CalendarActivity.this, SchedulePopup.class));
                             }
@@ -186,7 +186,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CalendarActivity.this, SchedulePopup.class);
                 intent.putExtra("button","save");
-                intent.putExtra("ID", userId);
+                intent.putExtra("ID",userid);
                 startActivity(intent);
 //                startActivity(new Intent(CalendarActivity.this, ScheduleCreateActivity.class));
             }

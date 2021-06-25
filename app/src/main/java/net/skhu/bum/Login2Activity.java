@@ -21,9 +21,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 
 public class Login2Activity extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class Login2Activity extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private Button btGo;
-
+    private List<SeoulInfo> seoulInfoList;
     private FloatingActionButton fab;
 
     @Override
@@ -151,10 +153,26 @@ public class Login2Activity extends AppCompatActivity {
             Member member = task.setUser();
 
 
-            Intent intent2 = new Intent(Login2Activity.this, LoginActivity.class);
-            Log.w("인덱스값",member.getIdx());
-            intent2.putExtra("loginId",member.getIdx());
+            Intent intent2 = new Intent(Login2Activity.this, SearchActivity.class);
+            CovidInfo covid = new CovidInfo();
+            SeoulLocation location = new SeoulLocation();
+            location.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            covid.start(location.getSeoulInfo());
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            seoulInfoList = covid.getSeoulInfo();
 
+            intent2.putExtra("seoulInfo", (Serializable) seoulInfoList);
+            Integer a = Integer.parseInt(member.getIdx());
+            intent2.putExtra("ID",a);
 
             startActivity(intent2);
             finish();

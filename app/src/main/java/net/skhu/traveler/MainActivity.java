@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.skhu.notice.NoticeActivity;
+import net.skhu.schedule.CalendarActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = new Intent(MainActivity.this, net.skhu.schedule.CalendarActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, CalendarActivity.class);
 
                 startActivity(intent1);
             }
